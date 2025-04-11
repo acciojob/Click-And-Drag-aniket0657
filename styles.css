@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  display: grid;
+  grid-template-columns: repeat(2, 100px);
+  grid-template-rows: repeat(2, 100px);
+  gap: 20px;
+  padding: 20px;
+}
+
+.cube {
+  width: 100px;
+  height: 100px;
+  background-color: #3498db;
+  position: absolute;
+  cursor: grab;
+  border-radius: 10px;
+  transition: box-shadow 0.2s;
+}
+
+.cube:active {
+  cursor: grabbing;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}

@@ -1,81 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click and Drag Cubes</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .container {
-            width: 400px;
-            height: 400px;
-            display: grid;
-            grid-template-columns: repeat(2, 100px);
-            grid-template-rows: repeat(2, 100px);
-            gap: 20px;
-            background: white;
-            position: relative;
-            padding: 20px;
-            border: 2px solid black;
-        }
-        .cube {
-            width: 100px;
-            height: 100px;
-            background: blue;
-            position: absolute;
-            cursor: grab;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Draggable Cubes</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="cube" style="top: 20px; left: 20px;"></div>
-        <div class="cube" style="top: 20px; left: 140px;"></div>
-        <div class="cube" style="top: 140px; left: 20px;"></div>
-        <div class="cube" style="top: 140px; left: 140px;"></div>
-    </div>
+  <div class="container" id="container">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+  </div>
 
-    <script>
-        const container = document.querySelector(".container");
-        const cubes = document.querySelectorAll(".cube");
-        let selectedCube = null, offsetX = 0, offsetY = 0;
-
-        cubes.forEach(cube => {
-            cube.addEventListener("mousedown", (e) => {
-                selectedCube = e.target;
-                offsetX = e.clientX - selectedCube.offsetLeft;
-                offsetY = e.clientY - selectedCube.offsetTop;
-                selectedCube.style.cursor = "grabbing";
-            });
-        });
-
-        document.addEventListener("mousemove", (e) => {
-            if (!selectedCube) return;
-            let x = e.clientX - offsetX;
-            let y = e.clientY - offsetY;
-
-            // Constrain within container
-            const maxX = container.offsetWidth - selectedCube.offsetWidth;
-            const maxY = container.offsetHeight - selectedCube.offsetHeight;
-            x = Math.max(0, Math.min(x, maxX));
-            y = Math.max(0, Math.min(y, maxY));
-
-            selectedCube.style.left = `${x}px`;
-            selectedCube.style.top = `${y}px`;
-        });
-
-        document.addEventListener("mouseup", () => {
-            if (selectedCube) {
-                selectedCube.style.cursor = "grab";
-                selectedCube = null;
-            }
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
